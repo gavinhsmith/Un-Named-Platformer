@@ -9,7 +9,9 @@ const KEY = { // Keyboard Codes
         RIGHT:        {C:false,ID:39},
         SPACE:        {C:false,ID:32},
         SHIFT:        {C:false,ID:16},
-        H:            {C:false,ID:72}
+        H:            {C:false,ID:72},
+        PLUS:         {C:false,ID:187},
+        MINUS:         {C:false,ID:189}
       },
 
       NS_CONTROLER = { // Nintendo Switch Controler
@@ -23,8 +25,9 @@ const KEY = { // Keyboard Codes
         DD:           {C:true,TYPE:0,ID:13},
         START:        {C:true,TYPE:0,ID:9},
         SELECT:       {C:true,TYPE:0,ID:8},
-        HOME:       {C:true,TYPE:0,ID:16},
-        SLH:          {C:true,TYPE:1,ID:0,AD:0.5}
+        HOME:         {C:true,TYPE:0,ID:16},
+        USHLEFT:      {C:true,TYPE:1,ID:0,AD:0.2,NEG:true},
+        USHRIGHT:     {C:true,TYPE:1,ID:0,AD:0.2,NEG:false}
       },
 
       WII_CONTROLER = { // Nitendo Wii Controler
@@ -40,18 +43,20 @@ const KEY = { // Keyboard Codes
 
       BINDINGS = {
         JUMP:         [NS_CONTROLER.A,NS_CONTROLER.B,KEY.W,KEY.SPACE,KEY.UP],
-        LEFT:         [WII_CONTROLER.DU,NS_CONTROLER.DL,NS_CONTROLER.SLH,KEY.A,KEY.LEFT],
-        RIGHT:        [WII_CONTROLER.DD,NS_CONTROLER.DR,KEY.D,KEY.RIGHT],
+        LEFT:         [WII_CONTROLER.DU,NS_CONTROLER.DL,NS_CONTROLER.USHLEFT,KEY.A,KEY.LEFT],
+        RIGHT:        [WII_CONTROLER.DD,NS_CONTROLER.DR,NS_CONTROLER.USHRIGHT,KEY.D,KEY.RIGHT],
         CROUCH:       [KEY.S,KEY.DOWN],
         RUN:          [NS_CONTROLER.X,NS_CONTROLER.Y,KEY.SHIFT],
-        DEBUG:        [KEY.H]
+        DEBUG:        [KEY.H],
+        D_NEXTLEVEL:  [KEY.PLUS,NS_CONTROLER.START],
+        D_PREVLEVEL:  [KEY.MINUS,NS_CONTROLER.SELECT]
       },
 
       KEYSTATE        = [];
 
 function keycheck(nameArr) {
   for (var k in nameArr) {
-    if (KEYSTATE[nameArr[k].ID] && !nameArr[k].C) {
+    if (!nameArr[k].C && KEYSTATE[nameArr[k].ID]) {
       return {state:true};
     };
   };
@@ -59,7 +64,7 @@ function keycheck(nameArr) {
 };
 
 function controlcheck(nameArr,index) {
-  var gpd = navigator.getGamepads();
+  var gpd = gamepads;
   for (var k in nameArr) {
     if (nameArr[k].C && nameArr[k].TYPE == 0 && gpd[index] && nameArr[k] != undefined) {
       if (gpd[index].buttons[nameArr[k].ID].pressed) {
@@ -67,9 +72,12 @@ function controlcheck(nameArr,index) {
       };
     } else if (nameArr[k].C && nameArr[k].TYPE == 1 && gpd[index] && nameArr[k] != undefined) {
       var tmp = gpd[index].axes[nameArr[k].ID];
-      var state = (tmp >= nameArr[k].AC || tmp <= -nameArr[k].AC) ? true : false;
-      var neg = (tmp >= 0) ? false : true;
-      if (1 == 1) {
+      var state;
+      var neg = nameArr[k].NEG;
+      if (neg) state = (tmp < -nameArr[k].AD) ? true : false;
+      if (!neg) state = (tmp > nameArr[k].AD) ? true : false;
+      if (neg) tmp = -tmp;
+      if (state) {
         return {state:state,val:Number(tmp),neg:neg};
       };
     };
@@ -79,7 +87,7 @@ function controlcheck(nameArr,index) {
 
 function inputcheck(nameArr) {
   var state = (keycheck(nameArr).state || controlcheck(nameArr,CONTROLLER).state) ? true : false;
-  var val = (controlcheck(nameArr,CONTROLLER).val) ? controlcheck(nameArr,CONTROLLER).val : undefined;
-  var neg = (controlcheck(nameArr,CONTROLLER).neg != undefined) ? controlcheck(nameArr,CONTROLLER).neg : null;
-  return {state:state,val:val,neg:neg};
+  var val = (controlcheck(nameArr,CONTROLLER).val != null) ? controlcheck(nameArr,CONTROLLER).val : ((state) ? 1 : 0);
+  var neg = (controlcheck(nameArr,CONTROLLER).neg != undefined) ? controlcheck(nameArr,CONTROLLER).neg : ((val < 0) ? true : false);
+  return new InputState(state,val,neg);
 };

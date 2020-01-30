@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Un-Titled Platformer</title>
+    <title>Unnamed Platformer</title>
     <link rel="stylesheet" href="css/master.css">
 
     <!-- Libraries -->
@@ -12,11 +12,12 @@
     <!-- Class Modifications -->
     <script src="js/classmods.js" charset="utf-8"></script>
 
-    <!-- Objects -->
-    <script src="obj/Player.js" charset="utf-8"></script>
-    <script src="obj/Enemy.js" charset="utf-8"></script>
-    <script src="obj/Wall.js" charset="utf-8"></script>
-    <script src="obj/Level.js" charset="utf-8"></script>
+    <!-- Classes -->
+    <script src="class/InputState.js" charset="utf-8"></script>
+    <script src="class/Player.js" charset="utf-8"></script>
+    <script src="class/Enemy.js" charset="utf-8"></script>
+    <script src="class/Wall.js" charset="utf-8"></script>
+    <script src="class/Level.js" charset="utf-8"></script>
   </head>
   <body>
     <!-- Game Scripts -->
@@ -26,7 +27,12 @@
     <script src="js/canvas.js" charset="utf-8"></script>
     <script src="js/math.js" charset="utf-8"></script>
     <script src="js/eventlisteners.js" charset="utf-8"></script>
-    <script src="js/levels.js" charset="utf-8"></script>
+
+    <!-- Level Set to Load -->
+    <script src="levels/dev.js" charset="utf-8"></script>
+
     <script src="js/game.js" charset="utf-8"></script>
+
+    <button type="button" class="reloadbtn hidden" id="reloadbtn" onclick="window.location.reload()">RETRY</button>
   </body>
 </html>

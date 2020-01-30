@@ -1,15 +1,28 @@
 // 14x10 grid-spaces visible at one time;
 class Level {
-  constructor(name,layout,forespritemap,backspritemap,spawnx,spawny,gs) {
+  constructor(name,layout,forespritemap,backspritemap,gs) {
     this.name = name;
     this.width = layout[0].length;
     this.height = layout.length;
     this.layout = layout;
     this.forespritemap = forespritemap;
     this.backspritemap = backspritemap;
-    this.sx = spawnx;
-    this.sy = spawny;
     this.gs = gs;
+
+    for (var lv0 in this.layout) {
+      var breaktest = false;
+      for (var lv1 in this.layout[lv0]) {
+        if (this.layout[lv0][lv1] == 2) {
+          var rect = findGridRect(lv1,lv0,this.gs);
+          this.sx = rect.x+(rect.width/2);
+          this.sy = rect.y-10;
+          breaktest = true;
+          break;
+        };
+      };
+      if (breaktest) break;
+    };
+
     this.mw = this.width*this.gs;
     this.mh = this.height*this.gs;
     this.sprites = [
@@ -17,12 +30,12 @@ class Level {
       new Sprite('assets/img/theme/ground/sprite_00.png',512,512,1,10), // Ground Flat (01)
       new Sprite('assets/img/theme/ground/sprite_03.png',512,512,1,10), // Dirt (02)
       new Sprite('assets/img/theme/ground/sprite_01.png',512,512,1,10), // Upper-Right Corner In-Wall Ground (03)
-      new Sprite('assets/img/theme/ground/sprite_02.png',512,512,1,10),  // Upper-Left Corner In-Wall Ground (04)
+      new Sprite('assets/img/theme/ground/sprite_02.png',512,512,1,10), // Upper-Left Corner In-Wall Ground (04)
       new Sprite('assets/img/theme/ground/sprite_04.png',512,512,1,10), // Left Clift (05)
       new Sprite('assets/img/theme/ground/sprite_05.png',512,512,1,10), // Right Clift (06)
-      new Sprite('assets/img/theme/ground/sprite_06.png',512,512,1,10),  // Tall Grass (07)
+      new Sprite('assets/img/theme/ground/sprite_06.png',512,512,1,10), // Tall Grass (07)
       null,
-      new Sprite('assets/img/theme/ground/sprite_07.png',512,512,1,10), // Right Grass (09)
+      new Sprite('assets/img/theme/ground/sprite_07.png',512,512,1,10),  // Right Grass (09)
       new Sprite('assets/img/theme/ground/sprite_08.png',512,512,1,10),  // Left Grass (10)
       new Sprite('assets/img/theme/ground/sprite_09.png',512,512,1,10),  // Full Grass (11)
       new Sprite('assets/img/theme/ground/sprite_10.png',512,512,1,10),  // Full G Down (12)
@@ -38,13 +51,17 @@ class Level {
       new Sprite('assets/img/theme/ground/sprite_20.png',512,512,1,10),  // Lower-Left Corner In-Wall Ground (22)
       new Sprite('assets/img/theme/ground/sprite_21.png',512,512,1,10),  // Lower-Right Corner In-Wall Ground (23)
       new Sprite('assets/img/theme/ground/sprite_22.png',512,512,1,10),  // Upside Down Flat (24)
+      new Sprite('assets/img/theme/ground/sprite_23.png',512,512,1,10),  // Left Clift On Wall (25)
+      new Sprite('assets/img/theme/ground/sprite_24.png',512,512,1,10),  // Left Clift No Drop (26)
+      new Sprite('assets/img/theme/ground/sprite_25.png',512,512,1,10),  // Right Clift On Wall (27)
+      new Sprite('assets/img/theme/ground/sprite_26.png',512,512,1,10)   // Right Clift No Drop (28)
     ];
   }
   getCollideObjs() {
     var rtn = [];
     for (var lvl0 in this.layout) {
       for (var lvl1 in this.layout[lvl0]) {
-        if (this.layout[lvl0][lvl1] != 0) {
+        if (this.layout[lvl0][lvl1] == 1) {
           rtn[rtn.length] = findGridRect(lvl1,lvl0,this.gs);
         };
       };
@@ -56,7 +73,10 @@ class Level {
       for (var lv1 in this.backspritemap[lv0]) {
         var db = this.backspritemap[lv0][lv1];
         var rb = findGridRect(lv1,lv0,this.gs);
-        this.sprites[db].draw(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+        this.sprites[0].draw(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+        if (db != 0) {
+          this.sprites[db].draw(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+        };
       };
     };
   }

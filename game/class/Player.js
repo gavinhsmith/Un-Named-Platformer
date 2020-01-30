@@ -72,6 +72,7 @@ class Player {
   move(fri,grav,objlist) {
     this.isRun = false;
     this.isMoving = false;
+    var joystickdeadzone = 0.1;
     /*
     this.isSmall = false;
     if (inputcheck(BINDINGS.CROUCH)) {
@@ -80,10 +81,10 @@ class Player {
     };
     */
     if (inputcheck(BINDINGS.LEFT).state) {
-      this.dx -= this.speed;
+      this.dx -= inputcheck(BINDINGS.LEFT).val*this.speed;
     };
     if (inputcheck(BINDINGS.RIGHT).state) {
-      this.dx += this.speed;
+      this.dx += inputcheck(BINDINGS.RIGHT).val*this.speed;
     };
     if (inputcheck(BINDINGS.JUMP).state && !this.isJump) {
       this.dy -= /*(this.isSmall) ? 0.5*this.jmph : */this.jmph;
@@ -93,11 +94,11 @@ class Player {
       this.isRun = true;
     };
 
-    if (inputcheck([NS_CONTROLER.START]).state && this.djc <= 0) {
+    if (inputcheck(BINDINGS.D_NEXTLEVEL).state && this.djc <= 0) {
       this.djc = 10;
       this.nextlvl();
     };
-    if (inputcheck([NS_CONTROLER.SELECT]).state && this.djc <= 0) {
+    if (inputcheck(BINDINGS.D_PREVLEVEL).state && this.djc <= 0) {
       this.djc = 10;
       this.prevlvl();
     };
@@ -106,17 +107,6 @@ class Player {
       navigator.getGamepads()[0].vibrate(1000,1);
     };
     */
-
-    var joystickdeadzone = 0.1;
-
-    if (gamepads[CONTROLLER]) {
-      if (gamepads[CONTROLLER].axes[0] > joystickdeadzone) {
-        this.dx += gamepads[CONTROLLER].axes[0]*this.speed;
-      };
-      if (gamepads[CONTROLLER].axes[0] < -joystickdeadzone) {
-        this.dx += gamepads[CONTROLLER].axes[0]*this.speed;
-      };
-    };
 
     this.isJump = true;
     this.dy += grav;

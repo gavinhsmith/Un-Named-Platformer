@@ -2,11 +2,30 @@
   padding: 0;
   margin: 0;
   background: black;
+  font-family: monospace;
 }
 .main-canvas {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  cursor: none;
+}
+.reloadbtn {
+  position: fixed;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%,-50%);
+  border: 2px solid white;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  background: black;
+  padding: 5px 10px;
+}
+.reloadbtn:hover {
+  background: white;
+  color: black;
+}
+.hidden {
+  display: none;
 }

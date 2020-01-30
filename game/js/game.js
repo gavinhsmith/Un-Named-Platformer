@@ -34,7 +34,7 @@ function gameoverloop() {
   ctx.clearAll();
   ctx.fillAll('#000');
   drawText('GAME OVER','5em monospace','#fff',VIEWPORTWIDTH/2,VIEWPORTHEIGHT/2,null);
-  drawText('(reload page to retry)','1.5em monospace','#fff',VIEWPORTWIDTH/2,(VIEWPORTHEIGHT/2)+80,null);
+  // drawText('(reload page to retry)','1.5em monospace','#fff',VIEWPORTWIDTH/2,(VIEWPORTHEIGHT/2)+80,null);
 }
 
 function gameloop() {
@@ -70,6 +70,7 @@ function gameloop() {
 function endGame() {
   clearInterval(gameloopvar);
   gameoverloopvar = setInterval(gameoverloop,1000/30);
+  document.getElementById('reloadbtn').classList.remove('hidden');
 };
 
 gameloopvar = setInterval(gameloop,1000/30);
