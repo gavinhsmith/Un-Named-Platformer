@@ -1,4 +1,4 @@
-class Wall {
+const Wall = class {
   constructor(x,y,width,height) {
     this.x = x;
     this.y = y;

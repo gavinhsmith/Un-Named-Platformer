@@ -13,3 +13,9 @@ window.addEventListener("gamepadconnected", (e) => {
 window.addEventListener("gamepaddisconnected", (e) => {
   console.log(`A gamepad disconnected: INDEX ${e.gamepad.index}`);
 });
+document.getElementById('reloadbtn').onmouseover = function (e) {
+  mouseinretry = true;
+};
+document.getElementById('reloadbtn').onmouseout = function (e) {
+  mouseinretry = false;
+};

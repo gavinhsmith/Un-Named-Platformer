@@ -3,9 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Unnamed Platformer</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/fonts/FR73Pixel/font.css">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/master.css">
 
+    <!-- Node.js Modules -->
+    <script src="node/modules.js" charset="utf-8"></script>
+    <script src="node/emitter.js" charset="utf-8"></script>
+
     <!-- Libraries -->
+    <script src="lib/get.js" charset="utf-8"></script>
+    <script src="lib/SHA256.js" charset="utf-8"></script>
     <script src="lib/rs.js" charset="utf-8"></script>
     <script src="lib/sprite.js" charset="utf-8"></script>
 
@@ -22,17 +33,20 @@
   <body>
     <!-- Game Scripts -->
     <script src="js/vars.js" charset="utf-8"></script>
+    <script src="js/sprites.js" charset="utf-8"></script>
     <script src="js/controls.js" charset="utf-8"></script>
     <script src="js/camera.js" charset="utf-8"></script>
     <script src="js/canvas.js" charset="utf-8"></script>
+
+    <button type="button" class="reloadbtn hidden" id="reloadbtn" onclick="window.location.reload()">RETRY</button>
+
     <script src="js/math.js" charset="utf-8"></script>
     <script src="js/eventlisteners.js" charset="utf-8"></script>
 
     <!-- Level Set to Load -->
     <script src="levels/dev.js" charset="utf-8"></script>
 
+    <!-- Start the Game -->
     <script src="js/game.js" charset="utf-8"></script>
-
-    <button type="button" class="reloadbtn hidden" id="reloadbtn" onclick="window.location.reload()">RETRY</button>
   </body>
 </html>

@@ -22,6 +22,11 @@
   },
   "homepage": "https://github.com/gavinhsmith/Un-Named-Platformer#readme",
   "dependencies": {
-    "electron": "^7.1.10"
+    "fs": "0.0.1-security",
+    "image-data-uri": "^2.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "electron": "^7.1.11"
   }
 }

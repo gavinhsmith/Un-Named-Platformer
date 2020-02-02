@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   background: black;
-  font-family: monospace;
+  font-family: "FR73Pixel";
 }
 .main-canvas {
   position: fixed;
@@ -14,6 +14,7 @@
   position: fixed;
   left: 50%;
   top: 70%;
+  font-size: 1.1em;
   transform: translate(-50%,-50%);
   border: 2px solid white;
   outline: none;
@@ -21,6 +22,10 @@
   font-weight: bold;
   background: black;
   padding: 5px 10px;
+}
+.activerlb {
+  background: white;
+  color: black;
 }
 .reloadbtn:hover {
   background: white;

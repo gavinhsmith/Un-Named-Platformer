@@ -7,3 +7,8 @@ Gamepad.prototype.vibrate = function (length,power) {
     strongMagnitude: power
   })
 };
+Image.prototype.parseURL = function (src) {
+  var rni = new Image();
+  rni.src = src;
+  return rni;
+};

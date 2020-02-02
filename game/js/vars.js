@@ -17,4 +17,6 @@ let   debug           = false,
       gamepads        = [],
       textline        = 0,
       gameloopvar     = null,
-      gameoverloopvar = null;
+      gameoverloopvar = null,
+      sicretry        = false;
+      mouseinretry    = false;
