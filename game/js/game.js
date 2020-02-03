@@ -1,7 +1,6 @@
-var player = new Player((c.width/2)-25,(c.height/2)-25,50,100,15,35);
+var player1 = new Player((c.width/2)-25,(c.height/2)-25,50,100,15,35,0);
 
 function debugloop() {
-  player.level = 999;
   ctx.save();
   ctx.font = '2em FR73Pixel';
   ctx.textBaseline = 'top';
@@ -42,12 +41,12 @@ function gameoverloop() {
   gamepads = navigator.getGamepads();
   drawText('GAME OVER','5em FR73Pixel','#000','#fff',VIEWPORTWIDTH/2,VIEWPORTHEIGHT/2,null);
   // drawText('(reload page to retry)','1.5em monospace','#fff',VIEWPORTWIDTH/2,(VIEWPORTHEIGHT/2)+80,null);
-  if (gamepads[CONTROLLER]) {
+  if (gamepads[player1.controler]) {
     if (!sicretry) document.getElementById('reloadbtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_08.png"></img> RETRY';
     if (mouseinretry) document.getElementById('reloadbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> RETRY';
-    if (inputcheck(BINDINGS.D_NEXTLEVEL).state) {
+    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler).state) {
       document.getElementById('reloadbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> RETRY';
-      document.getElementById('reloadbtn').classList.add('activerlb');
+      document.getElementById('reloadbtn').classList.add('activeb');
       sicretry = true;
       document.getElementById('reloadbtn').click();
     };
@@ -57,29 +56,27 @@ function gameoverloop() {
 function gameloop() {
   ctx.clearAll();
 
-  if (player.lives <= 0) {
+  if (player1.lives <= 0) {
     endGame();
   };
 
   gamepads = navigator.getGamepads();
-  camera.update(VIEWPORT,LEVELS[player.level],player);
+  camera.update(VIEWPORT,LEVELS[player1.level],player1);
 
-  if (inputcheck(BINDINGS.DEBUG).state) {
+  if (inputcheck(BINDINGS.DEBUG,player1.controler).state) {
     debug = true;
+  } else if (inputcheck(BINDINGS.UNDEBUG,player1.controler).state) {
+    debug = false;
   };
 
-  if (LEVELS[player.level] == null && LEVELS[player.level-1] && !debug) {
-    player.prevlvl();
-  };
-
-  LEVELS[player.level].drawBG(ctx);
-  player.update(ctx,FRICTION,GRAVITY,LEVELS[player.level]);
-  LEVELS[player.level].drawFG(ctx);
-  player.spritehearts.draw(ctx,10,35,28*5.5,28);
+  LEVELS[player1.level].drawBG(ctx);
+  player1.update(ctx,FRICTION,GRAVITY,LEVELS[player1.level]);
+  LEVELS[player1.level].drawFG(ctx);
+  player1.spritehearts.draw(ctx,10,35,28*5.5,28);
 
   if (debug) debugloop();
 
-  drawText(`Level: ${player.level+1}`,'bold 1.3em FR73Pixel','#fff','#000',10,(25*textline)+10,'urc');
+  drawText(`${LEVELS[player1.level].name} (LEVEL ${player1.level+1})`,'bold 1.3em FR73Pixel','#fff','#000',10,(25*textline)+10,'urc');
 
   textline = 0;
 };
@@ -88,6 +85,49 @@ function endGame() {
   clearInterval(gameloopvar);
   gameoverloopvar = setInterval(gameoverloop,1000/30);
   document.getElementById('reloadbtn').classList.remove('hidden');
+  LEVELS[player1.level].audio.main.stop();
 };
 
-gameloopvar = setInterval(gameloop,1000/30);
+function startGame() {
+  ASSETS.AUDIO.STARTSCREEN.stop();
+  clearInterval(titlescreenloopvar);
+  player1.reset();
+  gameloopvar = setInterval(gameloop,1000/30);
+  LEVELS[player1.level].audio.main.play();
+};
+
+function stopEndGame() {
+  document.getElementById('reloadbtn').classList.add('hidden');
+  document.getElementById('reloadbtn').classList.remove('activeb');
+  sicretry = false;
+  clearInterval(gameoverloopvar);
+};
+
+function titlescreenloop() {
+  ctx.clearAll();
+  ctx.fillAll('#000');
+  gamepads = navigator.getGamepads();
+  drawText('UNNAMED PLATFORMER','4em FR73Pixel','#000','#fff',VIEWPORTWIDTH/2,VIEWPORTHEIGHT/2,null);
+  if (gamepads[player1.controler]) {
+    if (!sicretry2) document.getElementById('startgamebtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_08.png"></img> START';
+    if (mouseinstart) document.getElementById('startgamebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> START';
+    if (!sicretry3) document.getElementById('creditbtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_10.png"></img> CREDITS';
+    if (mouseincredi) document.getElementById('creditbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> CREDITS';
+    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler).state) {
+      document.getElementById('startgamebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> START';
+      document.getElementById('startgamebtn').classList.add('activeb');
+      sicretry2 = true;
+      document.getElementById('startgamebtn').click();
+    };
+    if (inputcheck(BINDINGS.D_PREVLEVEL,player1.controler).state) {
+      document.getElementById('creditbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> CREDITS';
+      document.getElementById('creditbtn').classList.add('activeb');
+      sicretry3 = true;
+      document.getElementById('creditbtn').click();
+    };
+  };
+};
+
+ASSETS.AUDIO.STARTSCREEN.play();
+
+titlescreenloopvar = setInterval(titlescreenloop,1000/30);

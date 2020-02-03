@@ -1,7 +1,8 @@
 // 14x10 grid-spaces visible at one time;
 const Level = class {
-  constructor(name,layout,forespritemap,backspritemap,gs) {
+  constructor(name,theme,layout,forespritemap,backspritemap,gs) {
     this.name = name;
+    this.theme = theme;
     this.width = layout[0].length;
     this.height = layout.length;
     this.layout = layout;
@@ -39,7 +40,10 @@ const Level = class {
 
     this.mw = this.width*this.gs;
     this.mh = this.height*this.gs;
-    this.sprites = LEVELSPRITES.THEME.GROUND;
+    if (theme == 'ground' || theme == "test") {
+      this.sprites = ASSETS.SPRITES.LEVEL.THEME.GROUND;
+      this.audio = ASSETS.AUDIO.THEME.GROUND;
+    };
   }
   getCollideObjs() {
     var rtn = [];

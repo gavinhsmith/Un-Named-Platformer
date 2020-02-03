@@ -11,7 +11,8 @@ const KEY = { // Keyboard Codes
         SHIFT:        {C:false,ID:16},
         H:            {C:false,ID:72},
         PLUS:         {C:false,ID:187},
-        MINUS:         {C:false,ID:189}
+        MINUS:        {C:false,ID:189},
+        J:            {C:false,ID:74}
       },
 
       NS_CONTROLER = { // Nintendo Switch Controler
@@ -33,6 +34,8 @@ const KEY = { // Keyboard Codes
       WII_CONTROLER = { // Nitendo Wii Controler
         B1:            {C:true,TYPE:0,ID:2},
         B2:            {C:true,TYPE:0,ID:0},
+        A:             {C:true,TYPE:0,ID:1},
+        B:             {C:true,TYPE:0,ID:3},
         DU:            {C:true,TYPE:0,ID:12},
         DL:            {C:true,TYPE:0,ID:14},
         DR:            {C:true,TYPE:0,ID:15},
@@ -48,6 +51,7 @@ const KEY = { // Keyboard Codes
         CROUCH:       [KEY.S,KEY.DOWN],
         RUN:          [NS_CONTROLER.X,NS_CONTROLER.Y,KEY.SHIFT],
         DEBUG:        [KEY.H],
+        UNDEBUG:      [KEY.J],
         D_NEXTLEVEL:  [KEY.PLUS,NS_CONTROLER.START],
         D_PREVLEVEL:  [KEY.MINUS,NS_CONTROLER.SELECT]
       },
@@ -85,9 +89,9 @@ function controlcheck(nameArr,index) {
   return {state:false};
 };
 
-function inputcheck(nameArr) {
-  var state = (keycheck(nameArr).state || controlcheck(nameArr,CONTROLLER).state) ? true : false;
-  var val = (controlcheck(nameArr,CONTROLLER).val != null) ? controlcheck(nameArr,CONTROLLER).val : ((state) ? 1 : 0);
-  var neg = (controlcheck(nameArr,CONTROLLER).neg != undefined) ? controlcheck(nameArr,CONTROLLER).neg : ((val < 0) ? true : false);
+function inputcheck(nameArr,index) {
+  var state = (keycheck(nameArr).state || controlcheck(nameArr,index).state) ? true : false;
+  var val = (controlcheck(nameArr,index).val != null) ? controlcheck(nameArr,index).val : ((state) ? 1 : 0);
+  var neg = (controlcheck(nameArr,index).neg != undefined) ? controlcheck(nameArr,index).neg : ((val < 0) ? true : false);
   return new InputState(state,val,neg);
 };

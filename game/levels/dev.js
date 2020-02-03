@@ -284,6 +284,7 @@ BACKSPRITEMAPS[999] = [
 
 LEVELS[0] = new Level( // LVL1 (20x10)
   'LVL1',
+  'ground',
   LEVELMAPS[0],
   FORESPRITEMAPS[0],
   BACKSPRITEMAPS[0],
@@ -292,6 +293,7 @@ LEVELS[0] = new Level( // LVL1 (20x10)
 
 LEVELS[1] = new Level( // LVL2 (20x10)
   'LVL2',
+  'ground',
   LEVELMAPS[1],
   FORESPRITEMAPS[1],
   BACKSPRITEMAPS[1],
@@ -300,6 +302,7 @@ LEVELS[1] = new Level( // LVL2 (20x10)
 
 LEVELS[2] = new Level( // LVL3 (28x10)
   'LVL3',
+  'test',
   LEVELMAPS[2],
   FORESPRITEMAPS[2],
   BACKSPRITEMAPS[2],
@@ -308,6 +311,7 @@ LEVELS[2] = new Level( // LVL3 (28x10)
 
 LEVELS[3] = new Level( // LVL4 (20x40)
   'LVL4',
+  'ground',
   LEVELMAPS[3],
   FORESPRITEMAPS[3],
   BACKSPRITEMAPS[3],
@@ -316,6 +320,7 @@ LEVELS[3] = new Level( // LVL4 (20x40)
 
 LEVELS[999] = new Level( // Bruh Hills (20x10)
   'Bruh Hills',
+  'ground',
   LEVELMAPS[999],
   FORESPRITEMAPS[999],
   BACKSPRITEMAPS[999],

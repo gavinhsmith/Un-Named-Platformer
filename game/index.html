@@ -12,9 +12,13 @@
 
     <!-- Node.js Modules -->
     <script src="node/modules.js" charset="utf-8"></script>
+
+    <!-- Node.js Scripts -->
     <script src="node/emitter.js" charset="utf-8"></script>
+    <script src="node/externalLink.js" charset="utf-8"></script>
 
     <!-- Libraries -->
+    <script src="lib/sound.js" charset="utf-8"></script>
     <script src="lib/get.js" charset="utf-8"></script>
     <script src="lib/SHA256.js" charset="utf-8"></script>
     <script src="lib/rs.js" charset="utf-8"></script>
@@ -33,12 +37,17 @@
   <body>
     <!-- Game Scripts -->
     <script src="js/vars.js" charset="utf-8"></script>
-    <script src="js/sprites.js" charset="utf-8"></script>
+    <script src="js/assets.js" charset="utf-8"></script>
     <script src="js/controls.js" charset="utf-8"></script>
     <script src="js/camera.js" charset="utf-8"></script>
     <script src="js/canvas.js" charset="utf-8"></script>
+    <script src="js/popup.js" charset="utf-8"></script>
 
-    <button type="button" class="reloadbtn hidden" id="reloadbtn" onclick="window.location.reload()">RETRY</button>
+    <button type="button" class="btnmenu btn hidden" id="reloadbtn" onclick="stopEndGame();startGame();">RETRY</button>
+    <div id="titlebtnmnu" class="btnmenu">
+      <button type="button" class="btn" id="startgamebtn" onclick="player1.djc = 10;startGame();document.getElementById('titlebtnmnu').style.display = 'none';">START</button>
+      <button type="button" class="btn" id="creditbtn" onclick="window.location.href = 'CREDITS.html';">CREDITS</button>
+    </div>
 
     <script src="js/math.js" charset="utf-8"></script>
     <script src="js/eventlisteners.js" charset="utf-8"></script>

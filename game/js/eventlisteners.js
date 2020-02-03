@@ -19,3 +19,15 @@ document.getElementById('reloadbtn').onmouseover = function (e) {
 document.getElementById('reloadbtn').onmouseout = function (e) {
   mouseinretry = false;
 };
+document.getElementById('startgamebtn').onmouseover = function (e) {
+  mouseinstart = true;
+};
+document.getElementById('startgamebtn').onmouseout = function (e) {
+  mouseinstart = false;
+};
+document.getElementById('creditbtn').onmouseover = function (e) {
+  mouseincredi = true;
+};
+document.getElementById('creditbtn').onmouseout = function (e) {
+  mouseincredi = false;
+};

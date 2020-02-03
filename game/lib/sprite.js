@@ -72,6 +72,10 @@ const Sprite = class {
       this.curFrame = 0;
     };
   }
+  setstate(overall,cframe) {
+    this.overallcf = overall;
+    this.curFrame = cframe;
+  };
   draw(ctx,x,y,width,height) {
     var drawImage = this.parsestyles();
     ctx.save();

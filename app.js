@@ -33,10 +33,17 @@ const AsyncEmitter = class {
   }
 };
 
+function ratioize(ratio,number) {
+  return {
+    top: ratio*number,
+    bottom: number
+  };
+};
+
 app.on('ready',function () {
-  let win = new BrowserWindow({
-    width: 1000,
-    height: 526,
+  mainbw = new BrowserWindow({
+    width: ratioize(1000/526,526).top,
+    height: ratioize(1000/526,526).bottom,
     resizable: false,
     //fullscreen: false,
     //icon: path.join(__dirname, 'icon/icon.ico'),
@@ -45,10 +52,13 @@ app.on('ready',function () {
       nodeIntegration: true
     }
   });
-  win.setMenu(null);
-  win.on('close', () => {win = null});
-  win.loadURL(modalPath);
-  win.show();
+
+  let win1 = mainbw;
+
+  //win1.setMenu(null);
+  win1.on('close', () => {win = null});
+  win1.loadURL(modalPath);
+  win1.show();
 });
 
 var gsc = new SyncEmitter('getspritecashe');

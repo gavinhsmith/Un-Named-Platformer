@@ -1,5 +1,5 @@
 const Player = class {
-  constructor(x,y,width,height,spd,jumph) {
+  constructor(x,y,width,height,spd,jumph,controler) {
     this.x =              x;
     this.y =              y;
     this.sw =             width;
@@ -12,11 +12,11 @@ const Player = class {
     this.speed =          spd;
     this.dx =             0;
     this.dy =             0;
-    this.spritestilll =   PLAYERSPRITES.STILL_LEFT;
-    this.spritestillr =   PLAYERSPRITES.STILL_RIGHT;
-    this.spritewalkl =    PLAYERSPRITES.WALK_LEFT;
-    this.spritewalkr =    PLAYERSPRITES.WALK_RIGHT;
-    this.spritehearts =   PLAYERSPRITES.HEARTS;
+    this.spritestilll =   ASSETS.SPRITES.PLAYER.STILL_LEFT;
+    this.spritestillr =   ASSETS.SPRITES.PLAYER.STILL_RIGHT;
+    this.spritewalkl =    ASSETS.SPRITES.PLAYER.WALK_LEFT;
+    this.spritewalkr =    ASSETS.SPRITES.PLAYER.WALK_RIGHT;
+    this.spritehearts =   ASSETS.SPRITES.PLAYER.HEARTS;
     this.jmph =           jumph;
     this.isJump =         true;
     this.forceJump =      false;
@@ -28,20 +28,28 @@ const Player = class {
     this.djc =            0;
     this.facing =         1;
     this.isMoving =       false;
+    this.controler =      controler;
+    this.debugOLC =       '#00f';
   }
   draw(ctx) {
     ctx.save();
     //ctx.fillStyle = this.color;
     //ctx.fillRect(Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height)
     if (this.facing == 0 && !this.isMoving) {
-      this.spritestilll.update(ctx,this.x+camera.x,this.y+camera.y,this.width,this.height);
+      this.spritestilll.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
     } else if (this.facing == 1 && !this.isMoving) {
-      this.spritestillr.update(ctx,this.x+camera.x,this.y+camera.y,this.width,this.height);
+      this.spritestillr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
     } else if (this.facing == 1 && this.isMoving) {
-      this.spritewalkr.update(ctx,this.x+camera.x,this.y+camera.y,this.width,this.height);
+      this.spritewalkr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
     } else if (this.facing == 0 && this.isMoving) {
-      this.spritewalkl.update(ctx,this.x+camera.x,this.y+camera.y,this.width,this.height);
+      this.spritewalkl.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
     };
+
+    if (debug) {
+      ctx.strokeStyle = this.debugOLC;
+      ctx.strokeRect(Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
+    }
+
     ctx.restore();
   }
   resetmove() {
@@ -51,22 +59,57 @@ const Player = class {
   }
   die(lvl) {
     this.lives--;
+    this.spritehearts.updatestate();
     this.resetmove();
     this.x = lvl.sx-(this.width/2);
     this.y = lvl.sy-(this.height/2);
   }
   nextlvl() {
+    if (!LEVELS[this.level+1]) return;
+    if (LEVELS[this.level].theme != LEVELS[this.level+1].theme) {
+      LEVELS[this.level].audio.main.stop();
+    }
     this.level++;
+    if (LEVELS[this.level].theme != LEVELS[this.level-1].theme) {
+      LEVELS[this.level].audio.main.play();
+    }
+    this.resetmove();
+    this.x = LEVELS[this.level].sx-(this.width/2);
+    this.y = LEVELS[this.level].sy-(this.height/2);
+  };
+  setlvl(lvl) {
+    if (!LEVELS[lvl]) return;
+    var oldlvl = this.level;
+    if (LEVELS[this.level].theme != LEVELS[lvl].theme) {
+      LEVELS[this.level].audio.main.stop();
+    }
+    this.level = lvl;
+    if (LEVELS[this.level].theme != LEVELS[oldlvl].theme) {
+      LEVELS[this.level].audio.main.play();
+    }
     this.resetmove();
     this.x = LEVELS[this.level].sx-(this.width/2);
     this.y = LEVELS[this.level].sy-(this.height/2);
   };
   prevlvl() {
+    if (!LEVELS[this.level-1]) return;
+    if (LEVELS[this.level].theme != LEVELS[this.level-1].theme) {
+      LEVELS[this.level].audio.main.stop();
+    }
     this.level--;
+    if (LEVELS[this.level].theme != LEVELS[this.level+1].theme) {
+      LEVELS[this.level].audio.main.play();
+    }
     this.resetmove();
     this.x = LEVELS[this.level].sx-(this.width/2);
     this.y = LEVELS[this.level].sy-(this.height/2);
   };
+  reset() {
+    this.setlvl(0);
+    this.lives = 5;
+    this.spritehearts.setstate(0,0);
+    this.resetmove();
+  }
   collideObj(objlist) {
     if (this.dx >= 0.01) {
       for (var i = 0.1; i < this.dx; i++) {
@@ -138,25 +181,25 @@ const Player = class {
       this.wasSmall = true;
     };
     */
-    if (inputcheck(BINDINGS.LEFT).state) {
-      this.dx -= inputcheck(BINDINGS.LEFT).val*this.speed;
+    if (inputcheck(BINDINGS.LEFT,this.controler).state) {
+      this.dx -= inputcheck(BINDINGS.LEFT,this.controler).val*this.speed;
     };
-    if (inputcheck(BINDINGS.RIGHT).state) {
-      this.dx += inputcheck(BINDINGS.RIGHT).val*this.speed;
+    if (inputcheck(BINDINGS.RIGHT,this.controler).state) {
+      this.dx += inputcheck(BINDINGS.RIGHT,this.controler).val*this.speed;
     };
-    if (inputcheck(BINDINGS.JUMP).state && !this.isJump) {
+    if (inputcheck(BINDINGS.JUMP,this.controler).state && !this.isJump) {
       this.dy -= /*(this.isSmall) ? 0.5*this.jmph : */this.jmph;
       this.isJump = true;
     };
-    if (inputcheck(BINDINGS.RUN).state) {
+    if (inputcheck(BINDINGS.RUN,this.controler).state) {
       this.isRun = true;
     };
 
-    if (inputcheck(BINDINGS.D_NEXTLEVEL).state && this.djc <= 0) {
+    if (inputcheck(BINDINGS.D_NEXTLEVEL,this.controler).state && this.djc <= 0) {
       this.djc = 10;
       this.nextlvl();
     };
-    if (inputcheck(BINDINGS.D_PREVLEVEL).state && this.djc <= 0) {
+    if (inputcheck(BINDINGS.D_PREVLEVEL,this.controler).state && this.djc <= 0) {
       this.djc = 10;
       this.prevlvl();
     };
@@ -203,7 +246,6 @@ const Player = class {
     };
     if (this.y-this.height > lv.mh) {
       this.die(lv);
-      this.spritehearts.updatestate();
     };
     if (this.forceJump) {
       this.isJump = false;
