@@ -283,7 +283,7 @@ BACKSPRITEMAPS[999] = [
 /*****************/
 
 LEVELS[0] = new Level( // LVL1 (20x10)
-  'LVL1',
+  'Basic Level Test',
   'ground',
   LEVELMAPS[0],
   FORESPRITEMAPS[0],
@@ -292,7 +292,7 @@ LEVELS[0] = new Level( // LVL1 (20x10)
 );
 
 LEVELS[1] = new Level( // LVL2 (20x10)
-  'LVL2',
+  'Death Test',
   'ground',
   LEVELMAPS[1],
   FORESPRITEMAPS[1],
@@ -301,7 +301,7 @@ LEVELS[1] = new Level( // LVL2 (20x10)
 );
 
 LEVELS[2] = new Level( // LVL3 (28x10)
-  'LVL3',
+  'Camera/Theme Switching Test',
   'test',
   LEVELMAPS[2],
   FORESPRITEMAPS[2],
@@ -310,7 +310,7 @@ LEVELS[2] = new Level( // LVL3 (28x10)
 );
 
 LEVELS[3] = new Level( // LVL4 (20x40)
-  'LVL4',
+  'On-The-Fly Sprite Modification Test',
   'ground',
   LEVELMAPS[3],
   FORESPRITEMAPS[3],

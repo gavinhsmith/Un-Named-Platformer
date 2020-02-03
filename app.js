@@ -40,10 +40,12 @@ function ratioize(ratio,number) {
   };
 };
 
+var winsize = 526;
+
 app.on('ready',function () {
   mainbw = new BrowserWindow({
-    width: ratioize(1000/526,526).top,
-    height: ratioize(1000/526,526).bottom,
+    width: ratioize(1000/526,winsize).top,
+    height: ratioize(1000/526,winsize).bottom,
     resizable: false,
     //fullscreen: false,
     //icon: path.join(__dirname, 'icon/icon.ico'),
@@ -55,20 +57,8 @@ app.on('ready',function () {
 
   let win1 = mainbw;
 
-  //win1.setMenu(null);
+  win1.setMenu(null);
   win1.on('close', () => {win = null});
   win1.loadURL(modalPath);
   win1.show();
-});
-
-var gsc = new SyncEmitter('getspritecashe');
-gsc.on(function () {
-  return JSON.parse(fs.readFileSync('spritecashe.json'));
-});
-
-var usc = new AsyncEmitter('updatespritecashe');
-usc.on(function (data) {
-  var writedata = JSON.stringify(data);
-  fs.writeFileSync('spritecashe.json',writedata,'utf8');
-  return null;
 });

@@ -108,6 +108,7 @@ const Player = class {
     this.setlvl(0);
     this.lives = 5;
     this.spritehearts.setstate(0,0);
+    this.facing = 1;
     this.resetmove();
   }
   collideObj(objlist) {
