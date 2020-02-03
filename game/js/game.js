@@ -86,10 +86,12 @@ function endGame() {
   gameoverloopvar = setInterval(gameoverloop,1000/30);
   document.getElementById('reloadbtn').classList.remove('hidden');
   LEVELS[player1.level].audio.main.stop();
+  ASSETS.AUDIO.GAMEOVER.play();
 };
 
 function startGame() {
   ASSETS.AUDIO.STARTSCREEN.stop();
+  ASSETS.AUDIO.GAMEOVER.stop();
   clearInterval(titlescreenloopvar);
   player1.reset();
   gameloopvar = setInterval(gameloop,1000/30);

@@ -55,8 +55,10 @@ ASSETS.SPRITES = {
 ASSETS.AUDIO = {
         THEME: {
           GROUND: {
-            main: new Sound('assets/music/theme/ground/main.mp3',1,true)
+            main:     new Sound('assets/music/theme/ground/main.mp3',1,true)
           }
         },
-        STARTSCREEN: new Sound('assets/music/title.mp3',1,true)
+        STARTSCREEN:  new Sound('assets/music/title.mp3',1,true),
+        GAMEOVER:     new Sound('assets/music/gameover.ogg',0.4,true),
+        CREDITS:      new Sound('assets/music/credits.mp3',1,true)
       };

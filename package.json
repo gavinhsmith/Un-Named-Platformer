@@ -1,8 +1,8 @@
 {
   "name": "un-named-platformer",
-  "productName": "Unnamed Platformer",
+  "productName": "Un-Named Platformer",
   "version": "1.0.0",
-  "description": "Un-named Platformer",
+  "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
