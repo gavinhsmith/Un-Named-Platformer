@@ -31,3 +31,9 @@ document.getElementById('creditbtn').onmouseover = function (e) {
 document.getElementById('creditbtn').onmouseout = function (e) {
   mouseincredi = false;
 };
+document.getElementById('gototitlebtn').onmouseover = function (e) {
+  mouseintitle = true;
+};
+document.getElementById('gototitlebtn').onmouseout = function (e) {
+  mouseintitle = false;
+};

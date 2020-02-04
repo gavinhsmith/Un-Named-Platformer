@@ -7,10 +7,10 @@ disableScroll();
 function update() {
   activetime++;
   gamepads = navigator.getGamepads();
-  if (gamepads[CONTROLLER]) {
+  if (gamepads[0]) {
     if (!sicretry) document.getElementById('leavecredits').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_10.png"></img> GO BACK';
     if (mouseinretry) document.getElementById('leavecredits').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> GO BACK';
-    if (inputcheck([NS_CONTROLER.SELECT]).state) {
+    if (inputcheck([NS_CONTROLER.SELECT],0).state) {
       document.getElementById('leavecredits').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> GO BACK';
       document.getElementById('leavecredits').classList.add('activeb');
       sicretry = true;

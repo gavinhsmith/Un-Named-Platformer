@@ -35,6 +35,10 @@ function drawText(text,font,fcolor,scolor,x,y,pos) {
   textline++;
 };
 
+setInterval(function () {
+  btntimeout--;
+},1000/30);
+
 function gameoverloop() {
   ctx.clearAll();
   ctx.fillAll('#000');
@@ -44,11 +48,20 @@ function gameoverloop() {
   if (gamepads[player1.controler]) {
     if (!sicretry) document.getElementById('reloadbtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_08.png"></img> RETRY';
     if (mouseinretry) document.getElementById('reloadbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> RETRY';
-    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler).state) {
+    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler).state && btntimeout <= 0) {
       document.getElementById('reloadbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> RETRY';
       document.getElementById('reloadbtn').classList.add('activeb');
       sicretry = true;
       document.getElementById('reloadbtn').click();
+    };
+
+    if (!sicretry4) document.getElementById('gototitlebtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_10.png"></img> TITLE SCREEN';
+    if (mouseintitle) document.getElementById('gototitlebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> TITLE SCREEN';
+    if (inputcheck(BINDINGS.D_PREVLEVEL,player1.controler).state && btntimeout <= 0) {
+      document.getElementById('gototitlebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> TITLE SCREEN';
+      document.getElementById('gototitlebtn').classList.add('activeb');
+      sicretry4 = true;
+      document.getElementById('gototitlebtn').click();
     };
   };
 }
@@ -84,7 +97,7 @@ function gameloop() {
 function endGame() {
   clearInterval(gameloopvar);
   gameoverloopvar = setInterval(gameoverloop,1000/30);
-  document.getElementById('reloadbtn').classList.remove('hidden');
+  document.getElementById('gameorbtnmnu').classList.remove('hidden');
   LEVELS[player1.level].audio.main.stop();
   ASSETS.AUDIO.GAMEOVER.play();
 };
@@ -92,6 +105,7 @@ function endGame() {
 function startGame() {
   ASSETS.AUDIO.STARTSCREEN.stop();
   ASSETS.AUDIO.GAMEOVER.stop();
+  document.getElementById('titlebtnmnu').style.display = 'none';
   clearInterval(titlescreenloopvar);
   player1.reset();
   gameloopvar = setInterval(gameloop,1000/30);
@@ -99,10 +113,26 @@ function startGame() {
 };
 
 function stopEndGame() {
-  document.getElementById('reloadbtn').classList.add('hidden');
+  document.getElementById('gameorbtnmnu').classList.add('hidden');
   document.getElementById('reloadbtn').classList.remove('activeb');
+  document.getElementById('gototitlebtn').classList.remove('activeb');
   sicretry = false;
   clearInterval(gameoverloopvar);
+};
+
+function startTitleLoop() {
+  ASSETS.AUDIO.GAMEOVER.stop();
+  sicretry = false;
+  sicretry2 = false;
+  sicretry3 = false;
+  sicretry4 = false;
+  document.getElementById('gameorbtnmnu').classList.add('hidden');
+  document.getElementById('titlebtnmnu').classList.remove('hidden');
+  document.getElementById('titlebtnmnu').style.display = 'block';
+  document.getElementById('startgamebtn').classList.remove('activeb');
+  document.getElementById('creditbtn').classList.remove('activeb');
+  titlescreenloopvar = setInterval(titlescreenloop,1000/30);
+  ASSETS.AUDIO.STARTSCREEN.play();
 };
 
 function titlescreenloop() {
@@ -115,13 +145,13 @@ function titlescreenloop() {
     if (mouseinstart) document.getElementById('startgamebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> START';
     if (!sicretry3) document.getElementById('creditbtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_10.png"></img> CREDITS';
     if (mouseincredi) document.getElementById('creditbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> CREDITS';
-    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler).state) {
+    if (inputcheck(BINDINGS.D_NEXTLEVEL,player1.controler && btntimeout <= 0).state) {
       document.getElementById('startgamebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> START';
       document.getElementById('startgamebtn').classList.add('activeb');
       sicretry2 = true;
       document.getElementById('startgamebtn').click();
     };
-    if (inputcheck(BINDINGS.D_PREVLEVEL,player1.controler).state) {
+    if (inputcheck(BINDINGS.D_PREVLEVEL,player1.controler).state && btntimeout <= 0) {
       document.getElementById('creditbtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_11.png"></img> CREDITS';
       document.getElementById('creditbtn').classList.add('activeb');
       sicretry3 = true;
