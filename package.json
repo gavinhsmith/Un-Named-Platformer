@@ -5,8 +5,40 @@
   "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
+    "postinstall": "install-app-deps",
     "start": "npx electron .",
-    "buildself": "npx electron-packager . --out=dist --icon=icon/icon.ico"
+    "packwin32": "npx electron-builder --dir",
+    "distwin32": "npx electron-builder",
+    "packdeb": "npx electron-builder --linux --dir",
+    "distdeb": "npx electron-builder --linux"
+  },
+  "build": {
+    "appId": "unnamedplatformer.gavinhsmith.app",
+    "copyright": "Copyright © 2020 ${author}",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "icon/icon.ico"
+    }
   },
   "repository": {
     "type": "git",
@@ -16,7 +48,7 @@
     "Test",
     "Platformer"
   ],
-  "author": "LettuceMan Studios",
+  "author": "LettuceMan Studios <gavinhsmith420@gmail.com> (https://www.youtube.com/channel/UCY8WQmzdW6u3Ab7GDdTZmng)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gavinhsmith/Un-Named-Platformer/issues"
@@ -29,6 +61,7 @@
   },
   "devDependencies": {
     "electron": "^7.1.11",
+    "electron-builder": "^22.3.2",
     "electron-packager": "^14.2.0"
   }
 }

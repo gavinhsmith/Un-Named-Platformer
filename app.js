@@ -49,7 +49,7 @@ app.on('ready',function () {
     resizable: false,
     //fullscreen: false,
     //icon: path.join(__dirname, 'icon/icon.ico'),
-    icon: path.join(__dirname, 'icon/icon.ico'),
+    icon: path.join(__dirname, 'build/icon.ico'),
     webPreferences: {
       nodeIntegration: true
     }
