@@ -36,6 +36,9 @@
     },
     "win": {
       "target": "NSIS",
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
       "icon": "icon/icon.ico"
     }
   },
