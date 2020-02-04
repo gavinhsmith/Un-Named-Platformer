@@ -1,4 +1,4 @@
-![Un-Named Platoformer](https://i.imgur.com/0mmomG8.png)
+![Un-Named Platformer](https://i.imgur.com/0mmomG8.png)
 # Un-Named Platformer
 I had inspiration.
 
