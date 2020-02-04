@@ -5,15 +5,26 @@
   "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
-    "start": "npx electron .",
-    "pack-win32-x64": "npx electron-builder --dir",
-    "dist-win32-x64": "npx electron-builder",
+    "start": "npx electron . --no-user-gesture-required",
+
+    "gen-signkey": "npx electron-builder create-self-signed-cert",
+
+    "pack-self": "npx electron-builder --dir",
+    "dist-self": "npx electron-builder",
+
+    "pack-win32x64": "npx electron-builder --windows --dir",
+    "dist-win32x64": "npx electron-builder --windows",
+
     "pack-deb-x64": "npx electron-builder --linux --dir",
-    "dist-deb-x64": "npx electron-builder --linux"
+    "dist-deb-x64": "npx electron-builder --linux "
   },
   "build": {
     "appId": "unnamedplatformer.gavinhsmith.app",
     "copyright": "Copyright (c) 2020 ${author} All Rights Reserved",
+    "mac": {
+      "category": "public.app-category.adventure-games",
+      "icon": "build/icon.icns"
+    },
     "dmg": {
       "contents": [
         {
@@ -32,11 +43,12 @@
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "icon": "build/96x96.png"
     },
     "win": {
       "target": "NSIS",
-      "icon": "icon/icon.ico"
+      "icon": "build/icon.ico"
     },
     "nsis": {
       "oneClick": false,
