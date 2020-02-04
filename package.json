@@ -5,16 +5,15 @@
   "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
-    "postinstall": "install-app-deps",
     "start": "npx electron .",
-    "packwin32": "npx electron-builder --dir",
-    "distwin32": "npx electron-builder",
-    "packdeb": "npx electron-builder --linux --dir",
-    "distdeb": "npx electron-builder --linux"
+    "pack-win32-x64": "npx electron-builder --dir",
+    "dist-win32-x64": "npx electron-builder",
+    "pack-deb-x64": "npx electron-builder --linux --dir",
+    "dist-deb-x64": "npx electron-builder --linux"
   },
   "build": {
     "appId": "unnamedplatformer.gavinhsmith.app",
-    "copyright": "Copyright © 2020 ${author}",
+    "copyright": "Copyright (c) 2020 ${author} All Rights Reserved",
     "dmg": {
       "contents": [
         {
