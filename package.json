@@ -36,10 +36,12 @@
     },
     "win": {
       "target": "NSIS",
+      "icon": "icon/icon.ico"
+    },
+    "nsis": {
       "oneClick": false,
       "allowElevation": true,
-      "allowToChangeInstallationDirectory": true,
-      "icon": "icon/icon.ico"
+      "allowToChangeInstallationDirectory": true
     }
   },
   "repository": {
