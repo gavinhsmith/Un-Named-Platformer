@@ -15,8 +15,8 @@
     "pack-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows --dir",
     "dist-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows",
 
-    "pack-deb-x64": "npx electron-builder --linux deb --dir",
-    "dist-deb-x64": "npx electron-builder --linux deb"
+    "pack-deb-x64": "npx electron-builder --linux --dir",
+    "dist-deb-x64": "npx electron-builder --linux"
   },
   "build": {
     "appId": "unnamedplatformer.gavinhsmith.app",
@@ -41,11 +41,16 @@
     },
     "linux": {
       "category": "Games",
+      "desktop": {
+        "name": "Un-Named Platformer",
+        "icon": "./build/png",
+        "comment": "Un-Named Platformer"
+      },
       "target": [
         "AppImage",
         "deb"
       ],
-      "icon": "build/icon.icns"
+      "icon": "./build/png"
     },
     "win": {
       "target": "NSIS",
