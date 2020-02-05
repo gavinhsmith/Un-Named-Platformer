@@ -15,8 +15,8 @@
     "pack-win32x64": "npx electron-builder --windows --dir",
     "dist-win32x64": "npx electron-builder --windows",
 
-    "pack-deb-x64": "npx electron-builder --linux --dir",
-    "dist-deb-x64": "npx electron-builder --linux "
+    "pack-deb-x64": "npx electron-builder --linux deb --dir",
+    "dist-deb-x64": "npx electron-builder --linux deb"
   },
   "build": {
     "appId": "unnamedplatformer.gavinhsmith.app",
@@ -40,6 +40,7 @@
       ]
     },
     "linux": {
+      "category": "Games",
       "target": [
         "AppImage",
         "deb"
