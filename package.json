@@ -1,19 +1,19 @@
 {
   "name": "un-named-platformer",
   "productName": "Un-Named Platformer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
     "start": "npx electron . --no-user-gesture-required",
 
-    "gen-signkey": "npx electron-builder create-self-signed-cert",
+    "gen-signkey": "npx electron-builder create-self-signed-cert --publisher=LettuceManStudios",
 
-    "pack-self": "npx electron-builder --dir",
-    "dist-self": "npx electron-builder",
+    "pack-self": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --dir",
+    "dist-self": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder",
 
-    "pack-win32x64": "npx electron-builder --windows --dir",
-    "dist-win32x64": "npx electron-builder --windows",
+    "pack-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows --dir",
+    "dist-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows",
 
     "pack-deb-x64": "npx electron-builder --linux deb --dir",
     "dist-deb-x64": "npx electron-builder --linux deb"
