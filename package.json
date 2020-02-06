@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npx electron . --no-user-gesture-required",
 
-    "gen-signkey": "npx electron-builder create-self-signed-cert --publisher=LettuceManStudios",
+    "gen-signkey": "npx electron-builder create-self-signed-cert --publisher=%publisher%",
 
     "pack-self": "npx electron-builder --dir",
     "dist-self": "npx electron-builder",
