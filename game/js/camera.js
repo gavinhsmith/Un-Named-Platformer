@@ -12,5 +12,13 @@ const camera = {
       viewport.H - map.mh,
       0
     );
+  },
+  rect: function (viewport) {
+    return {
+      x: -this.x,
+      y: -this.y,
+      width: viewport.W,
+      height: viewport.H
+    }
   }
 };
