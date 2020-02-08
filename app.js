@@ -56,7 +56,7 @@ app.on('ready',function () {
 
   let win1 = mainbw;
 
-  //win1.setMenu(null);
+  win1.setMenu(null);
   win1.on('close', () => {win = null});
   win1.loadURL(modalPath);
   win1.show();
