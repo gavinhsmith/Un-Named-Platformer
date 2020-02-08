@@ -131,6 +131,7 @@ function startGame() {
   LEVELS[player1.level].audio.main.audio.volume = 1;
   ASSETS.AUDIO.STARTSCREEN.stop();
   ASSETS.AUDIO.GAMEOVER.stop();
+  player1.pause = false;
   document.getElementById('titlebtnmnu').style.display = 'none';
   clearInterval(titlescreenloopvar);
   player1.reset();
