@@ -1,13 +1,16 @@
 * {
   padding: 0;
   margin: 0;
-  background: black;
   font-family: "FR73Pixel";
   color: white;
+}
+body {
+  background: black;
 }
 .main-canvas {
   position: fixed;
   left: 50%;
+  background: black;
   top: 50%;
   transform: translate(-50%,-50%);
 }

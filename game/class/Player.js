@@ -30,6 +30,7 @@ const Player = class {
     this.isMoving =       false;
     this.controler =      controler;
     this.debugOLC =       '#00f';
+    this.pause =          false;
   }
   draw(ctx) {
     ctx.save();
@@ -194,6 +195,9 @@ const Player = class {
     };
     if (inputcheck(BINDINGS.RUN,this.controler).state) {
       this.isRun = true;
+    };
+    if (inputcheck(BINDINGS.PAUSE,this.controler).state) {
+      this.pause = true;
     };
 
     if (inputcheck(BINDINGS.D_NEXTLEVEL,this.controler).state && this.djc <= 0) {

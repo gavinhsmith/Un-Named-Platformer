@@ -12,7 +12,8 @@ const KEY = { // Keyboard Codes
         H:            {C:false,ID:72},
         PLUS:         {C:false,ID:187},
         MINUS:        {C:false,ID:189},
-        J:            {C:false,ID:74}
+        J:            {C:false,ID:74},
+        ESC:          {C:false,ID:27}
       },
 
       NS_CONTROLER = { // Nintendo Switch Controler
@@ -53,7 +54,8 @@ const KEY = { // Keyboard Codes
         DEBUG:        [KEY.H],
         UNDEBUG:      [KEY.J],
         D_NEXTLEVEL:  [KEY.PLUS,NS_CONTROLER.START],
-        D_PREVLEVEL:  [KEY.MINUS,NS_CONTROLER.SELECT]
+        D_PREVLEVEL:  [KEY.MINUS,NS_CONTROLER.SELECT],
+        PAUSE:        [KEY.ESC,NS_CONTROLER.HOME]
       },
 
       KEYSTATE        = [];

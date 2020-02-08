@@ -51,6 +51,10 @@
       <button type="button" class="btn" id="startgamebtn" onclick="player1.djc = 10;startGame();btntimeout = 20;">START</button>
       <button type="button" class="btn" id="creditbtn" onclick="window.location.href = 'CREDITS.html';">CREDITS</button>
     </div>
+    <div id="pausebtnmnu" class="btnmenu hidden">
+      <button type="button" class="btn" id="resumegamebtn" onclick="player1.djc = 10;stopPauseLoop();">RESUME</button>
+      <button type="button" class="btn" id="gototitlebtn2" onclick="stopEndGame();startTitleLoop();btntimeout = 20;">TITLE SCREEN</button>
+    </div>
 
     <script src="js/math.js" charset="utf-8"></script>
     <script src="js/eventlisteners.js" charset="utf-8"></script>

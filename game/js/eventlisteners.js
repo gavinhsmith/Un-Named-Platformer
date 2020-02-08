@@ -37,3 +37,15 @@ document.getElementById('gototitlebtn').onmouseover = function (e) {
 document.getElementById('gototitlebtn').onmouseout = function (e) {
   mouseintitle = false;
 };
+document.getElementById('resumegamebtn').onmouseover = function (e) {
+  mouseinresum = true;
+};
+document.getElementById('resumegamebtn').onmouseout = function (e) {
+  mouseinresum = false;
+};
+document.getElementById('gototitlebtn2').onmouseover = function (e) {
+  mouseintitl2 = true;
+};
+document.getElementById('gototitlebtn2').onmouseout = function (e) {
+  mouseintitl2 = false;
+};

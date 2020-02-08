@@ -6,15 +6,11 @@
   "main": "app.js",
   "scripts": {
     "start": "npx electron . --no-user-gesture-required",
-
     "gen-signkey": "npx electron-builder create-self-signed-cert --publisher=%publisher%",
-
     "pack-self": "npx electron-builder --dir",
     "dist-self": "npx electron-builder",
-
     "pack-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows --dir",
     "dist-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows",
-
     "pack-deb-x64": "npx electron-builder --linux --dir",
     "dist-deb-x64": "npx electron-builder --linux"
   },
@@ -82,7 +78,7 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "electron": "^7.1.11",
+    "electron": "^8.0.0",
     "electron-builder": "^22.3.2",
     "electron-packager": "^14.2.0"
   }
