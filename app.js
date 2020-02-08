@@ -46,9 +46,8 @@ app.on('ready',function () {
   mainbw = new BrowserWindow({
     width: ratioize(1000/526,winsize).top,
     height: ratioize(1000/526,winsize).bottom,
-    resizable: false,
+    //resizable: false,
     //fullscreen: false,
-    //icon: path.join(__dirname, 'icon/icon.ico'),
     icon: path.join(__dirname, 'build/icon.ico'),
     webPreferences: {
       nodeIntegration: true
