@@ -7,3 +7,7 @@ I created this.
 It's not done,
 
 But it will be.
+
+#### Look at [Wiki][402b7e05] for instructions
+
+  [402b7e05]: https://github.com/gavinhsmith/Un-Named-Platformer/wiki "Wiki"

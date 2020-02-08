@@ -9,10 +9,11 @@
     "gen-signkey": "npx electron-builder create-self-signed-cert --publisher=%publisher%",
     "pack-self": "npx electron-builder --dir",
     "dist-self": "npx electron-builder",
-    "pack-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows --dir",
-    "dist-win32x64": "set CSC_LINK=file://C:/Users/gavin/Certificates/LettuceManStudios.pfx && npx electron-builder --windows",
+    "pack-win32-x64": "npx electron-builder --windows --dir",
+    "dist-win32-x64": "npx electron-builder --windows",
     "pack-deb-x64": "npx electron-builder --linux --dir",
-    "dist-deb-x64": "npx electron-builder --linux"
+    "dist-deb-x64": "npx electron-builder --linux",
+    "help": "echo Un-Named Platformer Build Help && echo --- && echo npm run start: Start a development process of Un-Named Platformer && echo npm run dist-self: Build a package and installable of Un-Named-Platformer for the current platform (NOT RECOMENED) && echo npm run dist-win32-x64: Build a package and installable for Un-Named Platformer on Windows x64 (PROVIDE ENVIRONMENT VARIABLE \"CSC_LINK\" FOR CODE SIGNING) && echo npm run dist-deb-x64: Build a package and installable for Un-Named Platformer on Debian Linux x64"
   },
   "build": {
     "appId": "unnamedplatformer.gavinhsmith.app",
