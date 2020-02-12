@@ -1,4 +1,4 @@
-const rsjs = function (element,resize_type,options) {
+const rsjs = function (element,resize_type,options,scale) {
   if (resize_type=='full') {
     var viewport = {
       width: window.innerWidth,
@@ -37,8 +37,12 @@ const rsjs = function (element,resize_type,options) {
       newHeight = options.max_height;
     };
 
-    element.style.width = newWidth+'px';
-    element.style.height = newHeight+'px';
+    element.style.width = (newWidth*scale)+'px';
+    //element.style.marginLeft = String(options.margin_width+'px');
+    //element.style.marginRight = String(options.margin_width+'px');
+    element.style.height = (newHeight*scale)+'px';
+    //element.style.marginTop = String(options.margin_height+'px');
+    //element.style.marginBottom = String(options.margin_height+'px');
 
     return;
   };
