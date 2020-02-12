@@ -16,4 +16,4 @@ ctx.fillAll = function (color) {
   ctx.restore();
 };
 
-rsjs(c,'full',{margin_width: 0, margin_height: 0});
+rsjs(c,'full',{margin_width: 0, margin_height: 0},1);

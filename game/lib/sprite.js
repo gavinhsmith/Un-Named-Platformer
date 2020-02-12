@@ -46,8 +46,8 @@ const Sprite = class {
     if (typeof this.styles.opacity == 'number') {
       tempctx.globalAlpha = this.styles.opacity;
     };
-    if (typeof as.opacity == 'number') {
-      tempctx.globalAlpha = as.opacity;
+    if (as != undefined) {
+      if (as.opacity != undefined) tempctx.globalAlpha = as.opacity;
     };
 
     tempctx.drawImage(this.img,0,0,tempc.width,tempc.height,0,0,tempc.width,tempc.height);
@@ -62,15 +62,18 @@ const Sprite = class {
       };
     };
 
-    if (as.shade) {
-      for (var i in as.shade) {
-        tempctx.save();
-        tempctx.fillStyle = as.shade[i].color;
-        tempctx.globalAlpha = as.shade[i].intensity;
-        tempctx.fillRect((typeof as.shade[i].x == 'number' || as.shade[i].x == -1) ? as.shade[i].x : 0,(typeof as.shade[i].y == 'number' || as.shade[i].y == -1) ? as.shade[i].y : 0,(typeof as.shade[i].width == 'number' || as.shade[i].width == -1) ? as.shade[i].width : tempc.width,(typeof as.shade[i].height == 'number' || as.shade[i].height == -1) ? as.shade[i].height : tempc.height);
-        tempctx.restore();
+    if (as != undefined) {
+      if (as.shade) {
+        for (var i in as.shade) {
+          tempctx.save();
+          tempctx.fillStyle = as.shade[i].color;
+          tempctx.globalAlpha = as.shade[i].intensity;
+          tempctx.fillRect((typeof as.shade[i].x == 'number' || as.shade[i].x == -1) ? as.shade[i].x : 0,(typeof as.shade[i].y == 'number' || as.shade[i].y == -1) ? as.shade[i].y : 0,(typeof as.shade[i].width == 'number' || as.shade[i].width == -1) ? as.shade[i].width : tempc.width,(typeof as.shade[i].height == 'number' || as.shade[i].height == -1) ? as.shade[i].height : tempc.height);
+          tempctx.restore();
+        };
       };
     };
+
 
     var returnimg = new Image();
     returnimg.src = tempc.toDataURL();
@@ -112,7 +115,7 @@ const Sprite = class {
     return newImg;
   }
   update(ctx,x,y,width,height,as) {
-    this.draw(ctx,x,y,width,height,as);
+    this.draw(ctx,x,y,width,height,(as != undefined) ? as : undefined);
     this.updatestate();
   }
   getSRC() {

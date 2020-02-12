@@ -46,8 +46,8 @@ ASSETS.SPRITES = {
               new Sprite('assets/img/theme/ground/sprite_31.png',512,512,1,10),  // Right fade to small (33)
               new Sprite('assets/img/theme/ground/sprite_32.png',512,512,1,10),  // Generic Block (34)
               new Sprite('assets/img/theme/ground/sprite_c_33.png',512,512,1,10), // Dark Dirt (35)
-              new Sprite('assets/img/theme/ground/sprite_00.png',512,512,1,10,{shade:[{color:'#000',intensity:0.125,y:128,height:128},{color:'#000',intensity:0.25,y:256,height:128},{color:'#000',intensity:0.375,y:384,height:128}]}),  // Gradient Flat Ground (36)
-              new Sprite('assets/img/theme/ground/sprite_04.png',512,512,1,10,{shade:[{color:'#000',intensity:0.125,y:128,x:0,height:32},{color:'#000',intensity:0.125,y:160,x:32,height:32},{color:'#000',intensity:0.125,y:192,x:0,height:64},{color:'#000',intensity:0.25,y:256,x:0,height:32},{color:'#000',intensity:0.25,y:288,x:32,height:32},{color:'#000',intensity:0.25,y:320,x:0,height:64},{color:'#000',intensity:0.375,y:384,x:0,height:32},{color:'#000',intensity:0.375,y:384+32,x:32,height:32},{color:'#000',intensity:0.375,y:384+64,x:0,height:64}]}) // Dark Left Clift (37)
+              new Sprite('assets/img/theme/ground/sprite_00.png',512,512,1,10,{shade:[{color:'#000',intensity:0.125,y:128,height:128},{color:'#000',intensity:0.25,y:256,height:128},{color:'#000',intensity:0.375,y:384,height:128}],opacity:1}),  // Gradient Flat Ground (36)
+              new Sprite('assets/img/theme/ground/sprite_04.png',512,512,1,10,{shade:[{color:'#000',intensity:0.125,y:128,x:0,height:32},{color:'#000',intensity:0.125,y:160,x:32,height:32},{color:'#000',intensity:0.125,y:192,x:0,height:64},{color:'#000',intensity:0.25,y:256,x:0,height:32},{color:'#000',intensity:0.25,y:288,x:32,height:32},{color:'#000',intensity:0.25,y:320,x:0,height:64},{color:'#000',intensity:0.375,y:384,x:0,height:32},{color:'#000',intensity:0.375,y:384+32,x:32,height:32},{color:'#000',intensity:0.375,y:384+64,x:0,height:64}],opacity:1}) // Dark Left Clift (37)
             ]
           }
         }

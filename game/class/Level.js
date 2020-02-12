@@ -61,9 +61,9 @@ const Level = class {
       for (var lv1 in this.backspritemap[lv0]) {
         var db = this.backspritemap[lv0][lv1];
         var rb = findGridRect(lv1,lv0,this.gs);
-        this.sprites[0].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+        this.sprites[0].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
         if (db != 0 && checkIfRectOverlap(camera.rect(VIEWPORT),rb)) {
-          this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+          this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
         };
       };
     };
@@ -74,7 +74,7 @@ const Level = class {
         var db = this.forespritemap[lv0][lv1];
         var rb = findGridRect(lv1,lv0,this.gs);
         if (db >= 1 && db != 8 && checkIfRectOverlap(camera.rect(VIEWPORT),rb)) {
-          this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height);
+          this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
         };
       };
     };

@@ -5,7 +5,7 @@ window.addEventListener('keyup',function (e) {
   delete KEYSTATE[e.keyCode];
 });
 window.addEventListener('resize',function (e) {
-  rsjs(c,'full',{margin_width: 0, margin_height: 0});
+  rsjs(c,'full',{margin_width: 0, margin_height: 0},1);
 });
 window.addEventListener("gamepadconnected", (e) => {
   console.log(`A gamepad connected: INDEX ${e.gamepad.index}`);

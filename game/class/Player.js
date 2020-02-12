@@ -37,13 +37,13 @@ const Player = class {
     //ctx.fillStyle = this.color;
     //ctx.fillRect(Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height)
     if (this.facing == 0 && !this.isMoving) {
-      this.spritestilll.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
+      this.spritestilll.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height,undefined);
     } else if (this.facing == 1 && !this.isMoving) {
-      this.spritestillr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
+      this.spritestillr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height,undefined);
     } else if (this.facing == 1 && this.isMoving) {
-      this.spritewalkr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
+      this.spritewalkr.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height,undefined);
     } else if (this.facing == 0 && this.isMoving) {
-      this.spritewalkl.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height);
+      this.spritewalkl.update(ctx,Math.floor(this.x+camera.x),Math.floor(this.y+camera.y),this.width,this.height,undefined);
     };
 
     if (debug) {
