@@ -10,3 +10,12 @@ LEVELS[0] = new Level(
   BACKSPRITEMAPS[0],
   GRIDSIZE,
 );
+
+LEVELS[1] = new Level(
+  'Open Cave',
+  'cave',
+  LEVELMAPS[0],
+  FORESPRITEMAPS[0],
+  BACKSPRITEMAPS[0],
+  GRIDSIZE,
+);

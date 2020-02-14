@@ -1,4 +1,4 @@
-// 14x10 grid-spaces visible at one time;
+// 20x10 grid-spaces visible at one time;
 const Level = class {
   constructor(name,theme,layout,forespritemap,backspritemap,gs) {
     this.name = name;
@@ -43,6 +43,9 @@ const Level = class {
     if (theme == 'ground' || theme == "test") {
       this.sprites = ASSETS.SPRITES.LEVEL.THEME.GROUND;
       this.audio = ASSETS.AUDIO.THEME.GROUND;
+    } else if (theme == 'cave') {
+      this.sprites = ASSETS.SPRITES.LEVEL.THEME.CAVE;
+      this.audio = ASSETS.AUDIO.THEME.CAVE;
     };
   }
   getCollideObjs() {
@@ -61,7 +64,12 @@ const Level = class {
       for (var lv1 in this.backspritemap[lv0]) {
         var db = this.backspritemap[lv0][lv1];
         var rb = findGridRect(lv1,lv0,this.gs);
-        this.sprites[0].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
+        if (this.theme == 'cave') {
+          this.sprites[35].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
+        } else {
+          this.sprites[0].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
+        };
+
         if (db != 0 && checkIfRectOverlap(camera.rect(VIEWPORT),rb)) {
           this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
         };
