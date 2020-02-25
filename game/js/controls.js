@@ -73,13 +73,17 @@ function controlcheck(nameArr,index) {
   var gpd = gamepads;
   for (var k in nameArr) {
     if (nameArr[k].C && nameArr[k].TYPE == 0 && gpd[index] && nameArr[k] != undefined) {
-      if (gpd[index].buttons[nameArr[k].ID].pressed) {
-        return {state:true};
-      };
+      if (gpd[index].buttons[nameArr[k].ID] != undefined) {
+        if (gpd[index].buttons[nameArr[k].ID].pressed) {
+          return {state:true};
+        };
+      }
+      
     } else if (nameArr[k].C && nameArr[k].TYPE == 1 && gpd[index] && nameArr[k] != undefined) {
-      var tmp = gpd[index].axes[nameArr[k].ID];
+      var tmp = Number(gpd[index].axes[nameArr[k].ID]);
       var state;
       var neg = nameArr[k].NEG;
+      if (tmp == NaN) tmp = 0;
       if (neg) state = (tmp < -nameArr[k].AD) ? true : false;
       if (!neg) state = (tmp > nameArr[k].AD) ? true : false;
       if (neg) tmp = -tmp;

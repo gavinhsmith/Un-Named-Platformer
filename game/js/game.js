@@ -1,4 +1,4 @@
-var player1 = new Player((c.width/2)-25,(c.height/2)-25,50,100,15,35,0);
+var player1 = new Player((c.width/2)-(GRIDSIZE/2),(c.height/2)-(GRIDSIZE/2),GRIDSIZE,GRIDSIZE*2,15,35,0);
 
 function debugloop() {
   ctx.save();
@@ -135,7 +135,7 @@ function startGame() {
   document.getElementById('titlebtnmnu').style.display = 'none';
   clearInterval(titlescreenloopvar);
   player1.reset();
-  gameloopvar = setInterval(gameloop,1000/30);
+  gameloopvar = setInterval(gameloop,1000/FPS);
   LEVELS[player1.level].audio.main.play();
 };
 
