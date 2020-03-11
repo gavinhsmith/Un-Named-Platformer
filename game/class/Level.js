@@ -59,6 +59,21 @@ const Level = class {
     };
     return rtn;
   }
+  getFlagObjs() {
+    for (var lvl0 in this.layout) {
+      for (var lvl1 in this.layout[lvl0]) {
+        if (this.layout[lvl0][lvl1] == 3) {
+          return findGridRect(lvl1,lvl0,this.gs);
+        };
+      };
+    };
+    return {
+      x: -50,
+      y: -50,
+      width: 10,
+      height: 10
+    };
+  }
   drawBG(ctx) {
     for (var lv0 in this.backspritemap) {
       for (var lv1 in this.backspritemap[lv0]) {
@@ -72,6 +87,15 @@ const Level = class {
 
         if (db != 0 && checkIfRectOverlap(camera.rect(VIEWPORT),rb)) {
           this.sprites[db].update(ctx,rb.x+camera.x,rb.y+camera.y,rb.width,rb.height,undefined);
+        };
+      };
+    };
+    for (var lv0 in this.layout) {
+      for (var lv1 in this.layout[lv0]) {
+        var db = this.layout[lv0][lv1];
+        var rb = findGridRect(lv1,lv0,this.gs);
+        if (db == 3) {
+          ASSETS.SPRITES.END_GATE.update(ctx,(rb.x-(rb.width/2)-(rb.width/4))+camera.x,(rb.y-(rb.height*1.5))+camera.y,rb.width*2.5,rb.height*2.5,undefined);
         };
       };
     };

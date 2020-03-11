@@ -7,7 +7,7 @@ const FRICTION        = 0.35,
       GRIDSIZE        = 50,
       VIEWPORTWIDTH   = 1000,
       VIEWPORTHEIGHT  = 500,
-      FPS             = 60,
+      FPS             = 30,
       CONTROLLER      = 0,
       VIEWPORT        = {
         W:            VIEWPORTWIDTH,

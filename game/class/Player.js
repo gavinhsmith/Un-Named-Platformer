@@ -257,10 +257,19 @@ const Player = class {
       this.forceJump = false;
     }
   }
+  checkFlagColi(lvl) {
+    return checkIfRectOverlap(this,lvl.getFlagObjs());
+  }
+  handleFlagEnd(lvl) {
+    if (this.checkFlagColi(lvl)) {
+      this.nextlvl();
+    };
+  }
   update(ctx,fri,grav,lvl) {
     this.move(fri,grav,lvl.getCollideObjs());
     this.djc--;
     this.collideWall(lvl,ctx);
     this.draw(ctx);
+    this.handleFlagEnd(lvl);
   }
 };

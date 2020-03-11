@@ -182,7 +182,7 @@ function stopPauseLoop() {
   document.getElementById('gototitlebtn2').classList.remove('activeb');
   player1.pause = false;
   clearInterval(pauseloopvar);
-  gameloopvar = setInterval(gameloop,1000/30);
+  gameloopvar = setInterval(gameloop,1000/FPS);
 };
 
 function startPauseLoop() {

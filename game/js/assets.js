@@ -1,5 +1,6 @@
 const ASSETS = {};
 ASSETS.SPRITES = {
+        END_GATE: new Sprite('assets/img/theme/end_gate.png',1024,1024,3,5),
         PLAYER: {
           STILL_LEFT:     new Sprite('assets/img/player/char_still_l.png',256,512,1,1),
           STILL_RIGHT:    new Sprite('assets/img/player/char_still_r.png',256,512,1,1),
