@@ -1,7 +1,7 @@
 {
   "name": "un-named-platformer",
   "productName": "Un-Named Platformer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Un-Named Platformer",
   "main": "app.js",
   "scripts": {
