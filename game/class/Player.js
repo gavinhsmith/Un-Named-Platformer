@@ -31,6 +31,7 @@ const Player = class {
     this.controler =      controler;
     this.debugOLC =       '#00f';
     this.pause =          false;
+    this.hearthurtdtime = 0;
   }
   draw(ctx) {
     ctx.save();
@@ -64,6 +65,8 @@ const Player = class {
     this.resetmove();
     this.x = lvl.sx-(this.width/2);
     this.y = lvl.sy-(this.height/2);
+    this.hearthurtdtime = 2;
+    Entity.resetall();
   }
   nextlvl() {
     if (!LEVELS[this.level+1]) return;
@@ -77,6 +80,7 @@ const Player = class {
     this.resetmove();
     this.x = LEVELS[this.level].sx-(this.width/2);
     this.y = LEVELS[this.level].sy-(this.height/2);
+    Entity.resetall();
   };
   setlvl(lvl) {
     if (!LEVELS[lvl]) return;
@@ -91,6 +95,7 @@ const Player = class {
     this.resetmove();
     this.x = LEVELS[this.level].sx-(this.width/2);
     this.y = LEVELS[this.level].sy-(this.height/2);
+    Entity.resetall();
   };
   prevlvl() {
     if (!LEVELS[this.level-1]) return;
@@ -104,6 +109,7 @@ const Player = class {
     this.resetmove();
     this.x = LEVELS[this.level].sx-(this.width/2);
     this.y = LEVELS[this.level].sy-(this.height/2);
+    Entity.resetall();
   };
   reset() {
     this.setlvl(0);
@@ -111,6 +117,7 @@ const Player = class {
     this.spritehearts.setstate(0,0);
     this.facing = 1;
     this.resetmove();
+    Entity.resetall();
   }
   collideObj(objlist) {
     if (this.dx >= 0.01) {
@@ -183,15 +190,21 @@ const Player = class {
       this.wasSmall = true;
     };
     */
+    GameEvent.turnoff('player.move.jump');
+    GameEvent.turnoff('player.move.left');
+    GameEvent.turnoff('player.move.right');
     if (inputcheck(BINDINGS.LEFT,this.controler).state) {
       this.dx -= inputcheck(BINDINGS.LEFT,this.controler).val*this.speed;
+      GameEvent.turnon('player.move.left');
     };
     if (inputcheck(BINDINGS.RIGHT,this.controler).state) {
       this.dx += inputcheck(BINDINGS.RIGHT,this.controler).val*this.speed;
+      GameEvent.turnon('player.move.right');
     };
     if (inputcheck(BINDINGS.JUMP,this.controler).state && !this.isJump) {
       this.dy -= /*(this.isSmall) ? 0.5*this.jmph : */this.jmph;
       this.isJump = true;
+      GameEvent.turnon('player.move.jump');
     };
     if (inputcheck(BINDINGS.RUN,this.controler).state) {
       this.isRun = true;
@@ -265,11 +278,23 @@ const Player = class {
       this.nextlvl();
     };
   }
+  handleEntityColi(lvl) {
+    for (var na in Entity.list) {
+      if (checkIfRectOverlap(Entity.list[na],this)) {
+        if (Entity.list[na].type == 'bad' && Entity.list[na].pl == this.level) {
+          this.die(lvl);
+        };
+      };
+    };
+  }
   update(ctx,fri,grav,lvl) {
     this.move(fri,grav,lvl.getCollideObjs());
     this.djc--;
+    this.hearthurtdtime -= 0.01;
+    if (this.hearthurtdtime < 0) this.hearthurtdtime = 0;
     this.collideWall(lvl,ctx);
     this.draw(ctx);
     this.handleFlagEnd(lvl);
+    this.handleEntityColi(lvl);
   }
 };

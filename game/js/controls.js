@@ -13,7 +13,10 @@ const KEY = { // Keyboard Codes
         PLUS:         {C:false,ID:187},
         MINUS:        {C:false,ID:189},
         J:            {C:false,ID:74},
-        ESC:          {C:false,ID:27}
+        K:            {C:false,ID:75},
+        L:            {C:false,ID:76},
+        ESC:          {C:false,ID:27},
+        O:            {C:false,ID:79}
       },
 
       NS_CONTROLER = { // Nintendo Switch Controler
@@ -55,7 +58,10 @@ const KEY = { // Keyboard Codes
         UNDEBUG:      [KEY.J],
         D_NEXTLEVEL:  [KEY.PLUS,NS_CONTROLER.START],
         D_PREVLEVEL:  [KEY.MINUS,NS_CONTROLER.SELECT],
-        PAUSE:        [KEY.ESC,NS_CONTROLER.HOME]
+        PAUSE:        [KEY.ESC,NS_CONTROLER.HOME],
+        ENTITY_LEFT:  [KEY.K],
+        ENTITY_RIGHT: [KEY.L],
+        ENTITY_JUMP:  [KEY.O]
       },
 
       KEYSTATE        = [];
@@ -78,7 +84,7 @@ function controlcheck(nameArr,index) {
           return {state:true};
         };
       }
-      
+
     } else if (nameArr[k].C && nameArr[k].TYPE == 1 && gpd[index] && nameArr[k] != undefined) {
       var tmp = Number(gpd[index].axes[nameArr[k].ID]);
       var state;

@@ -45,6 +45,9 @@ const Sprite = class {
 
     if (typeof this.styles.opacity == 'number') {
       tempctx.globalAlpha = this.styles.opacity;
+      if (this.styles.opacity == 0) {
+        return new Image();
+      };
     };
     if (as != undefined) {
       if (as.opacity != undefined) tempctx.globalAlpha = as.opacity;

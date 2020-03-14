@@ -13,6 +13,15 @@ function debugloop() {
   ctx.restore();
 }
 
+rect = function (x,y,w,h) {
+  return {
+    x: x,
+    y: y,
+    width: w,
+    height: h
+  };
+};
+
 function drawText(text,font,fcolor,scolor,x,y,pos) {
   ctx.save();
   ctx.font = font;
@@ -107,10 +116,13 @@ function gameloop() {
   };
 
   LEVELS[player1.level].drawBG(ctx);
+  for (var n in Entity.list) {
+    Enemy.list[n].update(ctx,FRICTION,GRAVITY,LEVELS[player1.level],player1.level);
+  };
   player1.update(ctx,FRICTION,GRAVITY,LEVELS[player1.level]);
   LEVELS[player1.level].drawFG(ctx);
   drawText(`${LEVELS[player1.level].name} (LEVEL ${player1.level+1})`,'bold 1.3em FR73Pixel','#fff','#000',10,(25*textline)+10,'urc');
-  player1.spritehearts.draw(ctx,10,35,28*5.5,28);
+  player1.spritehearts.draw(ctx,10,40,154,28);
 
   if (player1.pause) startPauseLoop();
 

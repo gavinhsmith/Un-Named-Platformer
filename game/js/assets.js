@@ -8,6 +8,20 @@ ASSETS.SPRITES = {
           WALK_RIGHT:     new Sprite('assets/img/player/char_walk_r.png',256,512,4,3),
           HEARTS:         new Sprite('assets/img/player/hearts.png',1408,256,5,1)
         },
+        ENEMIES: {
+          PLACEHOLDER: {
+            STILL_LEFT:     new Sprite('assets/img/logo/icon.png',640,640,1,1),
+            STILL_RIGHT:    new Sprite('assets/img/logo/icon.png',640,640,1,1),
+            WALK_LEFT:      new Sprite('assets/img/logo/icon.png',640,640,1,1),
+            WALK_RIGHT:     new Sprite('assets/img/logo/icon.png',640,640,1,1)
+          },
+          GOBLIN: {
+            STILL_LEFT:     new Sprite('assets/img/enemies/goblin/still_left.png',256,256,1,1),
+            STILL_RIGHT:    new Sprite('assets/img/enemies/goblin/still_right.png',256,256,1,1),
+            WALK_LEFT:      new Sprite('assets/img/enemies/goblin/walk_left.png',256,256,4,3),
+            WALK_RIGHT:     new Sprite('assets/img/enemies/goblin/walk_right.png',256,256,4,3)
+          }
+        },
         LEVEL: {
           THEME: {
             GROUND: [
@@ -99,7 +113,7 @@ ASSETS.AUDIO = {
             main:     new Sound('assets/music/theme/ground/main.mp3',1,true)
           },
           CAVE: {
-            main:     new Sound('assets/music/theme/cave/main.mp3',1,true)
+            main:     new Sound('assets/music/theme/cave/main.wav',1,true)
           }
         },
         STARTSCREEN:  new Sound('assets/music/title.mp3',1,true),
