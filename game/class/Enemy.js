@@ -17,7 +17,7 @@ const Enemy = class extends Entity {
         this.jump();
       };
     }
-  }
+  };
   static enemysprites = {
     Goblin: {
       walkleft: ASSETS.SPRITES.ENEMIES.GOBLIN.WALK_LEFT,
@@ -25,10 +25,10 @@ const Enemy = class extends Entity {
       stillleft: ASSETS.SPRITES.ENEMIES.GOBLIN.STILL_LEFT,
       stillright: ASSETS.SPRITES.ENEMIES.GOBLIN.STILL_RIGHT
     }
-  }
+  };
   static Goblin(x,y,lvl) {
     return new Enemy(x,y,50,50,10,20,lvl,Enemy.enemyai.Goblin,'Goblin',Enemy.enemymovefunc.Goblin,Enemy.enemysprites.Goblin);
-  }
+  };
   constructor(x,y,width,height,speed,jumph,lvl,ai,name,movefunc,sprites) {
     super(x,y,width,height,speed,jumph,lvl,ai,'bad');
     this.name = name;

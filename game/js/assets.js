@@ -110,10 +110,10 @@ ASSETS.SPRITES = {
 ASSETS.AUDIO = {
         THEME: {
           GROUND: {
-            main:     new Sound('assets/music/theme/ground/main.mp3',1,true)
+            main:     new Sound('assets/music/theme/ground/main.mp3',0,true)
           },
           CAVE: {
-            main:     new Sound('assets/music/theme/cave/main.wav',1,true)
+            main:     new Sound('assets/music/theme/cave/main.wav',0.1,true)
           }
         },
         STARTSCREEN:  new Sound('assets/music/title.mp3',1,true),

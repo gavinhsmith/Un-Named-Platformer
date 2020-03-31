@@ -140,7 +140,7 @@ function endGame() {
 };
 
 function startGame() {
-  LEVELS[player1.level].audio.main.audio.volume = 1;
+  LEVELS[player1.level].audio.main.audio.volume = LEVELMUSICVOL;
   ASSETS.AUDIO.STARTSCREEN.stop();
   ASSETS.AUDIO.GAMEOVER.stop();
   player1.pause = false;
@@ -181,7 +181,7 @@ function startTitleLoop() {
 };
 
 function stopPauseLoop() {
-  LEVELS[player1.level].audio.main.audio.volume = 1;
+  LEVELS[player1.level].audio.main.audio.volume = LEVELMUSICVOL;
   sicretry = false;
   sicretry2 = false;
   sicretry3 = false;
@@ -200,7 +200,7 @@ function stopPauseLoop() {
 function startPauseLoop() {
   clearInterval(gameloopvar);
   ctx.fillAll('rgba(0,0,0,0.5)');
-  LEVELS[player1.level].audio.main.audio.volume = 0.3;
+  LEVELS[player1.level].audio.main.audio.volume = PAUSEMUSICVOL;
   sicretry = false;
   sicretry2 = false;
   sicretry3 = false;

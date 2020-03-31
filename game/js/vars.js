@@ -12,7 +12,9 @@ const FRICTION        = 0.35,
       VIEWPORT        = {
         W:            VIEWPORTWIDTH,
         H:            VIEWPORTHEIGHT
-      };
+      },
+      LEVELMUSICVOL   = 0.5,
+      PAUSEMUSICVOL   = 0.15;
 
 let   debug           = false,
       gamepads        = [],

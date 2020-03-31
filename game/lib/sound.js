@@ -5,7 +5,7 @@ Sound = class {
     this.src = src;
     this.audio.controls = false;
     this.audio.preload = 'auto';
-    this.audio.volume = Math.clamp((volume) ? volume : 1,0,1);
+    this.audio.volume = volume;
     this.audio.loop = (loop) ? loop : false;
   }
   play() {
@@ -16,7 +16,7 @@ Sound = class {
     this.audio.src = this.src;
   }
   setVolume(volume) {
-    this.audio.volume = Math.clamp((volume) ? volume : 1,0,1);
+    this.audio.volume = volume;
   }
   getVolume() {
     return this.audio.volume;

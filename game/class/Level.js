@@ -1,6 +1,6 @@
 // 20x10 grid-spaces visible at one time;
 const Level = class {
-  constructor(name,theme,layout,forespritemap,backspritemap,gs) {
+  constructor(name,theme,layout,forespritemap,backspritemap,gs,entities,lvlid) {
     this.name = name;
     this.theme = theme;
     this.width = layout[0].length;
@@ -8,6 +8,8 @@ const Level = class {
     this.layout = layout;
     this.forespritemap = forespritemap;
     this.backspritemap = backspritemap;
+    this.entities = entities;
+    this.lvlid = lvlid;
     this.gs = gs;
 
     for (var lv0 in this.layout) {
@@ -22,6 +24,15 @@ const Level = class {
         };
       };
       if (breaktest) break;
+    };
+
+    for (var lv5 in this.entities) {
+      if (this.entities[lv5].name == 'goblin') {
+        var entityrect = findGridRect(this.entities[lv5].x,this.entities[lv5].y,GRIDSIZE);
+        var entityx = entityrect.x;
+        var entityy = entityrect.y;
+        Enemy.Goblin(entityx,entityy,this.lvlid);
+      };
     };
 
     for (var lv0 in this.layout) {
