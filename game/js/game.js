@@ -97,7 +97,9 @@ function gameoverloop() {
       document.getElementById('gototitlebtn').click();
     };
   };
-}
+};
+
+var showtext = true;
 
 function gameloop() {
   ctx.clearAll();
@@ -121,8 +123,11 @@ function gameloop() {
   };
   player1.update(ctx,FRICTION,GRAVITY,LEVELS[player1.level]);
   LEVELS[player1.level].drawFG(ctx);
-  drawText(`${LEVELS[player1.level].name} (LEVEL ${player1.level+1})`,'bold 1.3em FR73Pixel','#fff','#000',10,(25*textline)+10,'urc');
-  player1.spritehearts.draw(ctx,10,40,154,28);
+
+  if (showtext) {
+    drawText(`${LEVELS[player1.level].name} (LEVEL ${player1.level+1})`,'bold 1.3em FR73Pixel','#fff','#000',10,(25*textline)+10,'urc');
+    player1.spritehearts.draw(ctx,10,40,154,28);
+  };
 
   if (player1.pause) startPauseLoop();
 
@@ -216,9 +221,11 @@ function startPauseLoop() {
 
 function titlescreenloop() {
   ctx.clearAll();
-  ctx.fillAll('#000');
+  var timg = new Image(1000,500);
+  timg.src = 'assets/img/logo/titlescreen.png';
+  ctx.drawImage(timg,0,0,1000,500);
   gamepads = navigator.getGamepads();
-  drawText('UN-NAMED PLATFORMER','4em FR73Pixel','#000','#fff',VIEWPORTWIDTH/2,VIEWPORTHEIGHT/2,null);
+  drawText('UN-NAMED PLATFORMER','4em FR73Pixel','#fff','#000',VIEWPORTWIDTH/2,VIEWPORTHEIGHT/2,null);
   if (gamepads[player1.controler]) {
     if (!sicretry2) document.getElementById('startgamebtn').innerHTML = '<img style="background: black;" height="20" src="assets/img/icon/btn/btn_08.png"></img> START';
     if (mouseinstart) document.getElementById('startgamebtn').innerHTML = '<img style="background: white;" height="20" src="assets/img/icon/btn/btn_09.png"></img> START';
